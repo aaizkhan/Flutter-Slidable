@@ -16,8 +16,9 @@ A Flutter Plugin for Android and IOS for List Items with Perform Actions.
 ### Download Demo Project from above and see the example. 
 
 
-> If You are new to Flutter 
-## Getting Started
+
+**If You are new to Flutter then follow below links**
+### Getting Started
 
 This project is a starting point for a Flutter application.
 
