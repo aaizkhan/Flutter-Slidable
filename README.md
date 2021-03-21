@@ -1,7 +1,22 @@
-# flutter_app
+# Flutter Slidable
 
-A new Flutter application.
+A Flutter Plugin for Android and IOS for List Items with Perform Actions.
 
+
+### Refrence 
+[Flutter Slidable](https://pub.dev/packages/flutter_slidable)
+
+## Installation
+ Put flutter_slidable code in your Flutter pubspec.yaml dependencies.
+`Flutter slidable: ^0.5.7`  and then Install it.
+
+### In Dart you can use this code to import  
+`import 'package:flutter_slidable/flutter_slidable.dart';` 
+
+### Download Demo Project from above and see the example. 
+
+
+> If You are new to Flutter 
 ## Getting Started
 
 This project is a starting point for a Flutter application.
