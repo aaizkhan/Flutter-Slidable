@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/Items.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -11,6 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: MyAppHome(),
     );
   }
@@ -26,36 +26,35 @@ class _MyAppState extends State<MyAppHome> {
 
   void setItems() {
     itemList.add(Items(
-      'Samsung Galaxy M12',
-      '\$300',
-      'Launch offers include a \$500',
-      'images/samsung.jpeg',
+      title: 'Samsung Galaxy M12',
+      price: '\$300',
+      subTitle: 'Launch offers include a \$500',
+      image: 'images/samsung.jpeg',
     ));
     itemList.add(Items(
-        'Redmi Note 10',
-        '\$250',
-        'Redmi Note 10 will go on sale for the first time in World today.',
-        'images/redemi.jpg'));
+        title: 'Redmi Note 10',
+        price: '\$250',
+        subTitle:
+            'Redmi Note 10 will go on sale for the first time in World today.',
+        image: 'images/redemi.jpg'));
     itemList.add(Items(
-        'OnePlus Nord',
-        '\$350',
-        'OnePlus Nord users reported some issues with the Android 11 update and the rollout has now been paused.',
-        'images/oneplus.jpeg'));
+        title: 'OnePlus Nord',
+        price: '\$350',
+        subTitle:
+            'OnePlus Nord users reported some issues with the Android 11 update and the rollout has now been paused.',
+        image: 'images/oneplus.jpeg'));
     itemList.add(Items(
-        'Motorola Moto G30',
-        '\$350',
-        'Moto G30 is priced at Rs 20,999 and comes with Android 11 out of the box.',
-        'images/moto.jpeg'));
-    setState(() {
-      itemList;
-    });
+        title: 'Motorola Moto G30',
+        price: '\$350',
+        subTitle:
+            'Moto G30 is priced at Rs 20,999 and comes with Android 11 out of the box.',
+        image: 'images/moto.jpeg'));
+    setState(() {});
   }
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-
     setItems();
   }
 
@@ -69,7 +68,7 @@ class _MyAppState extends State<MyAppHome> {
         ),
         body: SafeArea(
             child: Container(
-          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+          padding: EdgeInsets.symmetric(vertical: 30, horizontal: 10),
           child: ListView.builder(
               itemCount: itemList.length,
               itemBuilder: (context, int index) {
@@ -86,7 +85,7 @@ class _MyAppState extends State<MyAppHome> {
                             caption: 'Favourite',
                             color: Colors.lightBlue,
                             icon: Icons.favorite_border_outlined,
-                            onTap: () => print('Favourite')),
+                            onTap: () {}),
                         IconSlideAction(
                           foregroundColor: Colors.white,
                           caption: 'Contacts',
@@ -100,7 +99,56 @@ class _MyAppState extends State<MyAppHome> {
                           caption: 'Details',
                           color: Colors.black87,
                           icon: Icons.more_horiz,
-                          onTap: () => print('More'),
+                          onTap: () {
+                            showDialog(
+                                context: context,
+                                barrierDismissible: true,
+                                builder: (cxt) {
+                                  return SimpleDialog(
+                                    contentPadding:
+                                        EdgeInsets.symmetric(horizontal: 20),
+                                    children: [
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                      Image.asset(
+                                        itemList[index].image,
+                                        height: 180,
+                                      ),
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            itemList[index].title,
+                                            maxLines: 2,
+                                            style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w700),
+                                          ),
+                                          Text(
+                                            itemList[index].price,
+                                            style: TextStyle(
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.w600,
+                                                color: Colors.lightBlue),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                      Text(itemList[index].subTitle),
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                    ],
+                                  );
+                                });
+                          },
                         ),
                         IconSlideAction(
                           caption: 'Report',
@@ -125,7 +173,7 @@ class _MyAppState extends State<MyAppHome> {
                               ),
                             ),
                             Container(
-                              width: 200,
+                              width: 230,
                               padding: EdgeInsets.only(right: 10),
                               alignment: Alignment.topLeft,
                               child: Column(
@@ -138,6 +186,7 @@ class _MyAppState extends State<MyAppHome> {
                                         children: [
                                           Text(
                                             itemList[index].title,
+                                            maxLines: 2,
                                             style: TextStyle(
                                                 fontSize: 16,
                                                 fontWeight: FontWeight.w700),
@@ -171,51 +220,3 @@ class _MyAppState extends State<MyAppHome> {
         )));
   }
 }
-
-// Container(
-// padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-// child: Slidable(
-// actionPane: SlidableDrawerActionPane(),
-// actionExtentRatio: 0.25,
-// child: Container(
-// color: Colors.grey,
-// child: ListTile(
-// leading: CircleAvatar(
-// backgroundColor: Colors.lightBlue,
-// child: Text('3'),
-// foregroundColor: Colors.white,
-// ),
-// title: Text('Tile n° 3'),
-// subtitle: Text('SlidableDrawerDelegate'),
-// ),
-// ),
-// actions: <Widget>[
-// IconSlideAction(
-// caption: 'Archive',
-// color: Colors.amber,
-// icon: Icons.archive,
-// onTap: () => print('Archive'),
-// ),
-// IconSlideAction(
-// caption: 'Share',
-// color: Colors.indigo,
-// icon: Icons.share,
-// onTap: () => print('Share'),
-// ),
-// ],
-// secondaryActions: <Widget>[
-// IconSlideAction(
-// caption: 'More',
-// color: Colors.black45,
-// icon: Icons.more_horiz,
-// onTap: () => print('More'),
-// ),
-// IconSlideAction(
-// caption: 'Delete',
-// color: Colors.red,
-// icon: Icons.delete,
-// onTap: () => print('Delete'),
-// ),
-// ],
-// ),
-// ),
